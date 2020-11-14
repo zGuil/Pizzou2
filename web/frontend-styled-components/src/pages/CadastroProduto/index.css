@@ -1,0 +1,71 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container form {
+  width: 700px;
+  height: 650px;
+  border: 5px solid black;
+  border-radius: 15px;
+  padding: 50px;
+  background: #dceca4;
+}
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  color: black;
+}
+
+.container form .input-block label {
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 26px;
+  color: black;
+}
+
+.container form .input-block input,
+.container form .input-block textarea {
+  width: 100%;
+  background: #f5f8fa;
+  border: 1px solid #d3e2e5;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+}
+
+.container form .input-block input {
+  height: 33px;
+  padding: 0 16px;
+}
+
+.container form .input-block textarea {
+  min-height: 60px;
+  max-height: 120px;
+  resize: vertical;
+  padding: 16px;
+}
+
+.container form .input-container {
+  margin-top: 50px;
+}
+
+.container form .confirm-button {
+  margin-top: 50px;
+  border-radius: 10px;
+  margin-left: 170px;
+  width: 250px;
+  height: 50px;
+  border: 0;
+  background: #a0ba49;
+  cursor: pointer;
+  color: black;
+  font-size: 26px;
+}
