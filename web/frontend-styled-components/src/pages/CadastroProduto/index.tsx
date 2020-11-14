@@ -23,7 +23,7 @@ function CadastroProdutos() {
             setToken(response.data.access_token)
         })
 
-        api.post("/insert/produto", {nome, qtd:Number(qtd), preco_atual:Number(preco), descricao}).then((responde) => {
+        api.post("/insert/produto", {nome, qtd:Number(qtd), preco_atual:Number(preco), descricao}, {headers: {"Authorization": `JWT ${token}`}}).then((responde) => {
             alert("Produto Cadastrado com sucesso !!!")
         })
         .catch(() => {

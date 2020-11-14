@@ -1,0 +1,35 @@
+.container-table {
+  border-radius: 4px;
+  padding: 32px;
+  margin-top: 75px;
+}
+
+.estoque-table {
+  width: 100%;
+}
+
+.estoque-table thead th {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  font-size: 26px;
+}
+
+.estoque-table thead tr th {
+}
+
+.estoque-table tbody td {
+  text-align: center;
+  padding: 12px;
+  border: 5px solid grey;
+  font-size: 18px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+  font-size: 32px;
+  color: black;
+}
