@@ -2,8 +2,8 @@ from models.manager import Produto
 
 
 def insert_produtos(body):
-    for produto in body:
-        Produto.set(produto)
+    #for produto in body:
+    Produto.set(body)
 
 
 def get_produtos():
