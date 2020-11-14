@@ -1,10 +1,15 @@
 import React, { FormEvent, useState } from 'react'
 import api from "../../services/api"
+import { useHistory } from "react-router-dom"
+
+import { Header } from "../../components/Header"
 
 import './index.css'
 
 
 function CadastroProdutos() {
+    
+    const history = useHistory()
 
     const [nome, setNome] = useState("")
 
@@ -25,6 +30,7 @@ function CadastroProdutos() {
 
         api.post("/insert/produto", {nome, qtd:Number(qtd), preco_atual:Number(preco), descricao}, {headers: {"Authorization": `JWT ${token}`}}).then((responde) => {
             alert("Produto Cadastrado com sucesso !!!")
+            history.push("/")
         })
         .catch(() => {
             alert("Esse Produto não pode ser cadastrado !!!")
@@ -33,10 +39,11 @@ function CadastroProdutos() {
     
   
     return (
+        <>
+        <Header></Header>
        <div className="container">
-        
         <form onSubmit={handleButton}>
-            <h1>Cadastro de Produtos</h1>
+            <h1>📥 Cadastro de Produtos 📥</h1>
 
             <div className="input-container">
                 <div className="input-block">
@@ -65,6 +72,7 @@ function CadastroProdutos() {
         </form>
 
        </div>
+       </>
     )
   }
   

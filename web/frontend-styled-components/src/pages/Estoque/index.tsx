@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Header } from '../../components/Header'
 import api from '../../services/api'
 
 import { formatPrice } from "../../utils/format"
@@ -21,9 +22,10 @@ function Estoque() {
   
     return (
         <>  
-            <header>
-                <h1>Estoque</h1>
-            </header>
+        <Header>
+            <h1>📦 Estoque 📦</h1>
+        </Header>  
+            
             <div className="container-table">
                 <table className="estoque-table">
                     <thead>
@@ -58,4 +60,3 @@ function Estoque() {
   }
   
   export default Estoque;
-  

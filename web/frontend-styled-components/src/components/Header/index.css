@@ -1,0 +1,22 @@
+header a {
+  color: #a0ba49;
+  font-weight: bold;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+  font-size: 30px;
+}
+
+header {
+  margin-top: 50px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  font-size: 70px;
+  color: black;
+}

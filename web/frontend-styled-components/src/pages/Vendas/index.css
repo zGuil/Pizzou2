@@ -1,0 +1,101 @@
+.container {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container form {
+  width: 700px;
+  height: auto;
+  border: 5px solid black;
+  border-radius: 15px;
+  padding: 50px;
+  background: #dceca4;
+}
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 42px;
+  color: black;
+}
+
+.container form .input-block label {
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 26px;
+  color: black;
+}
+
+.container form .input-block input {
+  width: 100%;
+  background: #f5f8fa;
+  border: 1px solid #d3e2e5;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+}
+
+.container form .input-block input {
+  height: 33px;
+  padding: 0 16px;
+}
+
+.container form .input-container {
+  margin-top: 50px;
+}
+
+.container form .confirm-button {
+  margin-top: 20px;
+  border-radius: 10px;
+  margin-left: 170px;
+  width: 250px;
+  height: 50px;
+  border: 0;
+  background: #a0ba49;
+  cursor: pointer;
+  color: black;
+  font-size: 26px;
+}
+
+.container form .add-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container form .add-button button {
+  display: flex;
+  justify-content: flex-end;
+  border: 0;
+  background: #a0ba49;
+  margin-top: 20px;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 7px;
+}
+
+.container form .input-container table {
+  border-radius: 4px;
+  padding: 26px;
+  width: 100%;
+}
+
+.container form .input-container thead th {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  font-size: 20px;
+}
+
+.container form .input-container tbody td {
+  text-align: center;
+  font-size: 18px;
+  padding: 6px;
+}
