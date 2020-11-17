@@ -1,0 +1,58 @@
+.container-filter {
+  margin-top: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container-filter input {
+  border-radius: 5px;
+  height: 55px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.container-table-relatorio {
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.table-relatorio {
+  width: 100%;
+}
+
+.table-relatorio thead th {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  font-size: 26px;
+}
+
+.table-relatorio thead tr th {
+}
+
+.table-relatorio tbody td {
+  text-align: center;
+  padding: 12px;
+  border: 5px solid rgb(35, 37, 35);
+  font-size: 18px;
+  color: rgb(35, 37, 35);
+}
+
+.content-span-relatorio {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 33px;
+  font-size: 26px;
+  font-weight: bold;
+  color: black;
+}
+
+.accordion-content {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
