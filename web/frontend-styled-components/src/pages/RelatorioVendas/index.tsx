@@ -46,6 +46,9 @@ function RelatorioVendas() {
 
             <div className="container-filter">
                 <form>
+                    <span>De</span>
+                    <input type="date"/>
+                    <span>Até</span>
                     <input type="date"/>
                     <button>Filtrar</button>
                 </form>

@@ -13,6 +13,28 @@
   text-align: center;
 }
 
+.container-filter span {
+  font-size: 26px;
+  text-align: center;
+  padding: 15px;
+  color: black;
+  font-weight: bold;
+}
+
+.container-filter button {
+  border-radius: 10px;
+  margin-left: 70px;
+  width: 250px;
+  height: 50px;
+  border: 0;
+  background: #a0ba49;
+  cursor: pointer;
+  color: black;
+  font-size: 26px;
+  color: black;
+  font-weight: bold;
+}
+
 .container-table-relatorio {
   border-radius: 4px;
   padding: 5px;
