@@ -7,17 +7,30 @@ import { Header } from "../../components/Header"
 import './index.css'
 import { formatPrice } from '../../utils/format'
 
-
-
-function Vendas() {
-  
-    const [produto, setProduto] = useState("")
-
-    const [qtd, setQtd] = useState("0")
-
-    const [preco, setPreco] = useState("0")
-
+function Vendas() { 
+    const [produtos, setProdutos] = useState([
+        {nome: '', qtd: 0, preco: 0}
+    ])
+    // const [qtd, setQtd] = useState("0")
+    // const [preco, setPreco] = useState("0")
     const [token, setToken] = useState("")
+
+    function addNewProduct() {
+        setProdutos([
+            ...produtos,
+            {nome: '', qtd: 0, preco: 0}
+        ])
+    }
+
+    function setProductItemValue(position: number, field: string, value:string) {
+        const updateProductItems = produtos.map((produto, index) => {
+            if (index === position) {
+                return { ...produtos, [field]: value }
+            }
+            return produto
+        });
+        setProdutos(updateProductItems);
+    }
 
     function handleButton(event: FormEvent) {
         event.preventDefault()
@@ -26,7 +39,7 @@ function Vendas() {
             setToken(response.data.access_token)
         })
 
-        api.post("/insert/produto", {produto, qtd:Number(qtd), preco_atual:Number(preco)}, {headers: {"Authorization": `JWT ${token}`}}).then((responde) => {
+        api.post("/insert/produto", {produtos}, {headers: {"Authorization": `JWT ${token}`}}).then((responde) => {
             alert("Produto Cadastrado com sucesso !!!")
         })
         .catch(() => {
@@ -59,7 +72,7 @@ function Vendas() {
                 </div>
 
                 <div className="add-button">
-                   <button><FaPlus size={25} color="#000"/> Adicionar</button>
+                   <button onClick={addNewProduct}><FaPlus size={25} color="#000"/> Adicionar</button>
                 </div>
 
                 <table>
