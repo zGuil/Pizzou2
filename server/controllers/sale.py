@@ -12,7 +12,7 @@ class Vendas:
             item = Item_Venda()
             item.id_venda = venda.id
             item.produto = produto["nome"]
-            item.qtd_produto = produto["qtd_produto"]
+            item.qtd_produto = produto["qtd"]
             item.preco_produto = produto["preco"]
 
             db.session.add(item)
