@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from datetime import datetime
+import pytz
+from pytz import timezone
 from __init__ import app
 
 # Local
@@ -14,6 +17,8 @@ migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
+time_brasil = timezone("America/Sao_Paulo")
 
 
 class Produto(db.Model):
@@ -57,14 +62,20 @@ class Menu(db.Model):
 
 
 class Sale(db.Model):
+    __tablename__ = "sale"
     id = db.Column(db.Integer, primary_key=True)
-    product_pizza = db.Column(db.String(40))
-    product_drink = db.Column(db.String(40))
-    qtd_pizza = db.Column(db.Integer)
-    qtd_drink = db.Column(db.Integer)
-    price_pizza = db.Column(db.Float())
-    price_drink = db.Column(db.Float())
-    total = db.Column(db.Float())
+    date = db.Column(db.DateTime, default=datetime.now(time_brasil), nullable=False)
+
+
+class Item_Venda(db.Model):
+    __tablename__ = "item_venda"
+    id = db.Column(db.Integer, primary_key=True)
+    produto = db.Column(db.String(255))
+    id_venda = db.Column(db.Integer, db.ForeignKey("sale.id"), nullable=False)
+    qtd_produto = db.Column(db.Integer)
+    preco_produto = db.Column(db.Integer)
+
+    sale = db.relationship("Sale", backref="item_venda")
 
 
 if __name__ == '__main__':
