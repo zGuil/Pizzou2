@@ -19,6 +19,6 @@ def get_sale_relatorios():
     de_date = request.args.get('de_date')
     ate_date = request.args.get('ate_date')
     sale = Vendas()
-    return jsonify(sale.get(de_date, ate_date))
+    return jsonify(sale.get(de_date, ate_date+" 23:59:59"))
 
 
