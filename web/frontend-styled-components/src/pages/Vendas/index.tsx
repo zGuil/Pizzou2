@@ -47,7 +47,7 @@ function Vendas() {
 
     api
       .post(
-        '/insert/produto',
+        '/insert/venda',
         { produtos },
         { headers: { Authorization: `JWT ${token}` } },
       )
