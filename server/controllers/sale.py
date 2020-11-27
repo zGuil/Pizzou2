@@ -1,4 +1,5 @@
 from models.manager import Sale, Item_Venda, db
+from models.code_pymysql import get_relatorios
 
 
 class Vendas:
@@ -8,7 +9,7 @@ class Vendas:
         db.session.add(venda)
         db.session.flush()
 
-        for produto in request_body:
+        for produto in request_body['produtos']:
             item = Item_Venda()
             item.id_venda = venda.id
             item.produto = produto["nome"]
@@ -21,5 +22,5 @@ class Vendas:
         return "OK"
 
     def get(self, de_date, ate_date):
-
-        return "vendas"
+        relatorios = get_relatorios(de_date, ate_date)
+        return relatorios
