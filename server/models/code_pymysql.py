@@ -18,6 +18,23 @@ def get_relatorios(de_date, de_ate):
                     where sale.date between %s and %s"""
             cursor.execute(sql, (de_date, de_ate,))
             result = cursor.fetchall()
+
+            list_id_venda = []
+
+            for line in result:
+                total_venda = 0
+                date = ""
+                if line[0] not in list_id_venda:
+                    total_venda = line[3] * line[1]
+                    date = line[4]
+                
+                else:
+                    total_venda = line[3] * line[1]
+                    date = line[4]
+                
+
+                    
+                
             
     finally:
         connection.close()
