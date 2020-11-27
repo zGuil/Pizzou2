@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react';
+import { useHistory } from "react-router-dom"
 import { FaPlus } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import api from '../../services/api';
@@ -19,6 +20,7 @@ function Vendas() {
   const [qtd, setQtd] = useState('0');
   const [preco, setPreco] = useState('0');
   const [token, setToken] = useState('');
+  const history = useHistory()
 
   function addNewProduct() {
     if (!nomeProduto || !qtd || !preco) alert('Preencha os campos!');
@@ -53,6 +55,8 @@ function Vendas() {
       )
       .then((responde) => {
         alert('Produto Cadastrado com sucesso !!!');
+        history.push("/")
+        
       })
       .catch(() => {
         alert('Esse Produto não pode ser cadastrado !!!');
