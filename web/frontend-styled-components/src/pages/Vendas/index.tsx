@@ -86,7 +86,7 @@ function Vendas() {
             </div>
 
             <div className="input-block">
-              <label>Preço</label>
+              <label>Preço Unitário</label>
               <input
                 type="number"
                 value={preco}

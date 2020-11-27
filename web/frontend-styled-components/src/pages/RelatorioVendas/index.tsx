@@ -86,7 +86,7 @@ function RelatorioVendas() {
                                         <tr>
                                             <th>Produto</th>
                                             <th>Quantidade</th>
-                                            <th>Preço</th>
+                                            <th>Preço Unitário</th>
                                         </tr>
                                     </thead>
                         {venda.produtos.map((produto, index) => (
