@@ -54,12 +54,12 @@ function Vendas() {
         { headers: { Authorization: `JWT ${token}` } },
       )
       .then((responde) => {
-        alert('Produto Cadastrado com sucesso !!!');
+        alert('Venda efetuada com sucesso !!!');
         history.push("/")
         
       })
       .catch(() => {
-        alert('Esse Produto não pode ser cadastrado !!!');
+        alert('Essa venda não pode ser efetuada !!!');
       });
   }
 
