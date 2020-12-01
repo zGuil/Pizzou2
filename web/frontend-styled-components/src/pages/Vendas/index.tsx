@@ -85,6 +85,7 @@ function Vendas() {
               <input
                 type="number"
                 value={qtd}
+                min="1"
                 onChange={(e) => setQtd(e.target.value)}
               />
             </div>
@@ -132,7 +133,7 @@ function Vendas() {
                       <td>
                         <button
                           type="button"
-                          style={{ border: 0 }}
+                          style={{ border: 0, background: "#dceca4" }}
                           onClick={() => deleteProduct(produto.nome)}
                         >
                           <AiFillDelete size={26} color="#000" />

@@ -22,15 +22,51 @@
   text-align: center;
   padding: 12px;
   border: 5px solid rgb(35, 37, 35);
+  width: 100px;
   font-size: 18px;
   color: rgb(35, 37, 35);
 }
 
-/* header {
+.formEditProduct {
+  border: 0;
+}
+
+.formEditProduct .input-container .input-block textarea {
   width: 100%;
+  background: #f5f8fa;
+  border: 1px solid #d3e2e5;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+}
+
+.formEditProduct .input-container .input-block textarea {
+  min-height: 60px;
+  max-height: 120px;
+  resize: vertical;
+  padding: 16px;
+}
+
+.formEditProduct .confirm-button {
+  border-radius: 10px;
   display: flex;
   justify-content: center;
-  margin-top: 46px;
-  font-size: 32px;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  height: 50px;
+  border: 0;
+  background: #a0ba49;
+  cursor: pointer;
   color: black;
-} */
+  font-size: 26px;
+}
+
+.info-icon-description {
+  display: inline;
+  justify-content: flex-end;
+  margin-left: 120px;
+  margin-bottom: 500px;
+  margin-bottom: 50px;
+  position: absolute;
+}

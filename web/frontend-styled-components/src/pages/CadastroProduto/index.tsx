@@ -32,8 +32,11 @@ function CadastroProdutos() {
             alert("Produto Cadastrado com sucesso !!!")
             history.push("/")
         })
-        .catch(() => {
-            alert("Esse Produto não pode ser cadastrado !!!")
+        .catch((error) => {
+            if(error.response.status === 400) {
+                alert("Esse Produto já existe no estoque!!!")
+            }
+            
         })
     }
     
@@ -42,7 +45,7 @@ function CadastroProdutos() {
         <>
         <Header></Header>
        <div className="container">
-        <form onSubmit={handleButton}>
+        <form className="formCreateProduct"onSubmit={handleButton}>
             <h1>📥 Cadastro de Produtos 📥</h1>
 
             <div className="input-container">
@@ -53,7 +56,7 @@ function CadastroProdutos() {
 
                 <div className="input-block">
                     <label>Quantidade</label>
-                    <input type="number" required value={qtd} onChange={(e) => setQtd(e.target.value) }/>
+                    <input type="number" required value={qtd} min="1" onChange={(e) => setQtd(e.target.value) }/>
                 </div>
 
                 <div className="input-block">
