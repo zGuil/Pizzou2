@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.users import current_identity, jwt_required
+from app.controllers.users import current_identity, jwt_required
 
 
 bp = Blueprint("users", __name__)

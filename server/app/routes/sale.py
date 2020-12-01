@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from controllers.sale import Vendas
+from app.controllers.sale import Vendas
 
 
 bp = Blueprint("sale", __name__)

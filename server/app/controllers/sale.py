@@ -1,5 +1,5 @@
-from models.manager import Sale, Item_Venda, db
-from models.code_pymysql import get_relatorios
+from models import Sale, Item_Venda, db
+from app.code_pymysql import get_relatorios
 
 
 class Vendas:

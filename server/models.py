@@ -1,22 +1,29 @@
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy, event
 import pytz
 from pytz import timezone
-from __init__ import app
 
-# Local
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/pizzou'
+from datetime import datetime
 
-# Prod
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Pizzou1234@db-ope-pizzou.ct2bcpzzh2py.us-east-1.rds.amazonaws.com:3306/pizzou'
+from settings import app_config, app_active
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+config = app_config[app_active]
 
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+if __name__ == "__main__":
+    app = Flask(__name__)
+    app.config["SQLALCHEMY_DATABASE_URI"] = config.SQLALCHEMY_DATABASE_URI
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db = SQLAlchemy(app)
+    migrate = Migrate(app, db)
+
+    manager = Manager(app)
+    manager.add_command("db", MigrateCommand)
+else:
+    db = SQLAlchemy(config.APP)
 
 time_brasil = timezone("America/Sao_Paulo")
 
@@ -39,9 +46,27 @@ class Produto(db.Model):
                           nome=body["nome"], qtd=body['qtd'])
         db.session.add(produto)
         db.session.commit()
+        db.session.close()
 
         return "OK"
 
+    @staticmethod
+    def update(body):
+        produto = Produto.query.filter_by(id=body["id"]).first()
+        produto.preco_atual = body["preco_atual"]
+        produto.descricao = body["descricao"]
+        produto.nome = body["nome"]
+        produto.qtd = body["qtd"]
+        db.session.add(produto)
+        db.session.commit()
+        db.session.close()
+
+    @staticmethod
+    def delete(id):
+        produto = Produto.query.filter_by(id=id).first()
+        db.session.delete(produto)
+        db.session.commit()
+        db.session.close()
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
