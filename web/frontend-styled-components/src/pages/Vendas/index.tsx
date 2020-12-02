@@ -37,10 +37,7 @@ function Vendas() {
   const history = useHistory()
 
 
-  useEffect(() => {
-    api.get('/cardapio').then(responde => {setCardapio(responde.data)})
-    
-  }, [])
+  
 
 
   function addNewProduct() {
@@ -58,6 +55,15 @@ function Vendas() {
       setDesconto("")
     }
   }
+  const handleCategoria = (nome: string) => {
+
+      setCategoria(nome)
+    
+      api.get('/cardapio', {params: {categoria: nome}}).then(responde => {setCardapio(responde.data)})
+
+  }
+
+
   const handleCardapio = (nome: string) => {
     console.log(nome)
     const escolhaProduto = cardapio.filter((p) => p.nome === nome)
@@ -114,7 +120,7 @@ function Vendas() {
           <div className="input-container">
             <div className="input-block">
                 <label>Categoria</label>
-                <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                <select value={categoria} onChange={(e) => handleCategoria(e.target.value)}>
                   <option value="">Selecione uma Opção</option>
                   <option value="bebida">Bebida</option>
                   <option value="pizza">Pizza</option>
