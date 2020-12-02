@@ -7,6 +7,7 @@ from pytz import timezone
 from .routes.produto import bp as bp_produtos
 from .routes.sale import bp as bp_sale
 from .routes.health import bp as bp_health
+from .routes.cardapio import bp as bp_cardapio
 
 config = app_config[app_active]
 
@@ -29,6 +30,7 @@ def create_app(config_name):
     app.register_blueprint(bp_produtos)
     app.register_blueprint(bp_sale)
     app.register_blueprint(bp_health)
+    app.register_blueprint(bp_cardapio)
 
 
     return app

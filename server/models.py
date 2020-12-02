@@ -80,11 +80,16 @@ class Users(db.Model):
         return users
 
 
-class Menu(db.Model):
+class Cardapio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40))
-    price = db.Column(db.Float())
+    nome = db.Column(db.String(70))
+    preco = db.Column(db.Integer)
 
+
+    @staticmethod
+    def get():
+        cardapio = Cardapio.query.all()
+        return cardapio
 
 class Sale(db.Model):
     __tablename__ = "sale"
