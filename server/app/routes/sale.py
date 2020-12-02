@@ -10,9 +10,11 @@ def insert_sale_route():
     request_body = request.get_json()
     
     sale = Vendas()
-    sale.transaction(request_body)
-
-    return jsonify("Venda efetuda com Sucesso"), 201
+    venda = sale.transaction(request_body)
+    if venda == "OK":
+        return jsonify("Venda efetuda com Sucesso"), 201
+    else:
+        return jsonify(f"O produto {venda[0]}, não pode atender a venda. Estoque atual: {venda[1]} "), 400
 
 @bp.route("/relatorio/vendas", methods=["GET"])
 def get_sale_relatorios():
