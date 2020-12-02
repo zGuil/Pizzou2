@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom"
 import { FaPlus } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
@@ -12,25 +12,50 @@ interface produtos {
   nome: string;
   qtd: string;
   preco: string;
+  subtotal: number
+}
+
+interface cardapio {
+  id: number;
+  nome: string;
+  preco: string;
 }
 
 function Vendas() {
+
   const [produtos, setProdutos] = useState<produtos[]>([]);
+  const [cardapio, setCardapio] = useState<cardapio[]>([]);
   const [nomeProduto, setNomeProduto] = useState('');
   const [qtd, setQtd] = useState('0');
-  const [preco, setPreco] = useState('0');
+  const [preco, setPreco] = useState("0");
+  const [subtotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const [token, setToken] = useState('');
   const history = useHistory()
+
+
+  useEffect(() => {
+    api.get('/cardapio').then(responde => {setCardapio(responde.data)})
+    
+  }, [])
+
 
   function addNewProduct() {
     if (!nomeProduto || !qtd || !preco) alert('Preencha os campos!');
     else {
-      setProdutos([...produtos, { nome: nomeProduto, qtd, preco }]);
+      setProdutos([...produtos, { nome: nomeProduto, qtd, preco, subtotal: Number(preco) * Number(qtd)}]);
       setNomeProduto('');
       setQtd('');
-      setPreco('');
+      setPreco("0");
+      setSubTotal(0)
     }
   }
+  const handleCardapio = (id: number) => {
+
+    const product = produtos.filter((p) => p.id === id)
+  
+  }
+
 
   function deleteProduct(nomeProduct: string) {
     const newProducts = produtos.filter((p) => p.nome !== nomeProduct);
@@ -73,11 +98,13 @@ function Vendas() {
           <div className="input-container">
             <div className="input-block">
               <label>Produto</label>
-              <input
-                type="text"
-                value={nomeProduto}
-                onChange={(e) => setNomeProduto(e.target.value)}
-              />
+              <select>
+                {cardapio.map((p) => { return (
+                  <option value={p.nome}>{p["nome"]}</option>
+                )
+                  
+                })}
+              </select>
             </div>
 
             <div className="input-block">
@@ -94,8 +121,16 @@ function Vendas() {
               <label>Preço Unitário</label>
               <input
                 type="number"
-                value={preco}
+                value={}
                 onChange={(e) => setPreco(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <label>Desconto</label>
+              <input
+                type="number"
+                value={0}
               />
             </div>
 
@@ -111,6 +146,7 @@ function Vendas() {
                   <th>Nome</th>
                   <th>Quantidade</th>
                   <th>Preço</th>
+                  <th>Subtotal</th>
                   <th />
                 </tr>
               </thead>
@@ -131,6 +167,10 @@ function Vendas() {
                       </td>
 
                       <td>
+                        <span>{formatPrice(Number(produto.subtotal))}</span>
+                      </td>
+
+                      <td>
                         <button
                           type="button"
                           style={{ border: 0, background: "#dceca4" }}
@@ -144,6 +184,11 @@ function Vendas() {
                 })}
               </tbody>
             </table>
+          </div>
+
+          <div className="total-venda">
+            <label>Total:</label>
+            <span>{formatPrice(10)}</span>
           </div>
 
           <button className="confirm-button" type="submit">

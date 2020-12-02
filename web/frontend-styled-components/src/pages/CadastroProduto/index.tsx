@@ -46,7 +46,7 @@ function CadastroProdutos() {
         <Header></Header>
        <div className="container">
         <form className="formCreateProduct"onSubmit={handleButton}>
-            <h1>📥 Cadastro de Produtos 📥</h1>
+            <h1>📥 Cadastro de Produto 📥</h1>
 
             <div className="input-container">
                 <div className="input-block">

@@ -62,7 +62,7 @@ function RelatorioVendas() {
     return (
         <>
             <Header>
-                <h1>📊 Relatórios de Vendas 📊</h1>
+                <h1>📊 Relatório de Vendas 📊</h1>
             </Header>
 
             <div className="container-filter">

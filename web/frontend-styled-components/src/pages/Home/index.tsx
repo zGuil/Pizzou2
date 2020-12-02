@@ -22,28 +22,28 @@ function Home() {
             <div className="field">
                 <Link to="/vendas">
                     <FcMoneyTransfer size={250} color="#a0ba49"/>
-                    <span>Efetuar Vendas</span>
+                    <span>Efetuar Venda</span>
                 </Link>
             </div>
 
             <div className="field">
             <Link to="/cadastro-produto">
                 <HiFolderAdd size={250} color="#a0ba49"/>
-                <span>Cadastrar Produto</span>
+                <span>Cadastro de Produto</span>
             </Link>   
             </div>
 
             <div className="field">
             <Link to="/relatorio-vendas">
                 <BsBarChartFill size={250} color="#a0ba49"/>
-                <span>Relatórios de Vendas</span>
+                <span>Relatório de Vendas</span>
             </Link>   
             </div>
 
             <div className="field">
                 <Link to="/estoque">
                     <RiFileSearchFill size={250} color="#a0ba49"/>
-                    <span>Verificar Estoque</span>
+                    <span>Estoque</span>
                 </Link>
                 
             </div>

@@ -49,6 +49,20 @@
   margin-top: 50px;
 }
 
+.container form .total-venda label {
+  display: flex;
+  justify-content: center;
+  font-size: 26px;
+  color: black;
+}
+.container form .total-venda span {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+}
+
 .container form .confirm-button {
   margin-top: 20px;
   border-radius: 10px;
