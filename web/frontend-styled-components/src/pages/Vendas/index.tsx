@@ -12,7 +12,8 @@ interface produtos {
   nome: string;
   qtd: string;
   preco: string;
-  subtotal: number
+  subtotal: number;
+  categoria: string;
 }
 
 interface cardapio {
@@ -28,7 +29,9 @@ function Vendas() {
   const [nomeProduto, setNomeProduto] = useState('');
   const [qtd, setQtd] = useState('0');
   const [preco, setPreco] = useState("0");
+  const [desconto, setDesconto] = useState("0");
   const [subtotal, setSubTotal] = useState(0);
+  const [categoria, setCategoria] = useState("");
   const [total, setTotal] = useState(0);
   const [token, setToken] = useState('');
   const history = useHistory()
@@ -42,25 +45,37 @@ function Vendas() {
 
   function addNewProduct() {
     if (!nomeProduto || !qtd || !preco) alert('Preencha os campos!');
+    if (desconto > preco) alert('O desconto não pode ser maior que preço !');
     else {
-      setProdutos([...produtos, { nome: nomeProduto, qtd, preco, subtotal: Number(preco) * Number(qtd)}]);
+      const sub = Number(preco) * Number(qtd) - Number(desconto)
+      setProdutos([...produtos, { nome: nomeProduto, qtd, preco, subtotal: sub, categoria}]);
+      setTotal(total + sub)
       setNomeProduto('');
       setQtd('');
       setPreco("0");
       setSubTotal(0)
+      setCategoria("")
+      setDesconto("")
     }
   }
-  const handleCardapio = (id: number) => {
+  const handleCardapio = (nome: string) => {
+    console.log(nome)
+    const escolhaProduto = cardapio.filter((p) => p.nome === nome)
+    setPreco(escolhaProduto[0].preco)
+    setNomeProduto(nome)
 
-    const product = produtos.filter((p) => p.id === id)
-  
   }
 
 
   function deleteProduct(nomeProduct: string) {
-    const newProducts = produtos.filter((p) => p.nome !== nomeProduct);
+    const newProducts = produtos.filter((p) => {
+      if (p.nome === nomeProduct) setTotal(total - p.subtotal)
+      return(p.nome !== nomeProduct)
+    });
+    
 
     setProdutos(newProducts);
+    
   }
 
   function handleButton(event: FormEvent) {
@@ -83,8 +98,9 @@ function Vendas() {
         history.push("/")
         
       })
-      .catch(() => {
-        alert('Essa venda não pode ser efetuada !!!');
+      .catch((error) => {
+        alert(error.response.data)
+        window.location.reload()
       });
   }
 
@@ -97,8 +113,18 @@ function Vendas() {
 
           <div className="input-container">
             <div className="input-block">
+                <label>Categoria</label>
+                <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                  <option value="">Selecione uma Opção</option>
+                  <option value="bebida">Bebida</option>
+                  <option value="pizza">Pizza</option>
+                </select>
+            </div>
+
+            <div className="input-block">
               <label>Produto</label>
-              <select>
+              <select value={nomeProduto} onChange={(e) => handleCardapio(e.target.value)}>
+                <option value="">Selecione uma Opção</option>
                 {cardapio.map((p) => { return (
                   <option value={p.nome}>{p["nome"]}</option>
                 )
@@ -121,7 +147,7 @@ function Vendas() {
               <label>Preço Unitário</label>
               <input
                 type="number"
-                value={}
+                value={preco}
                 onChange={(e) => setPreco(e.target.value)}
               />
             </div>
@@ -130,7 +156,8 @@ function Vendas() {
               <label>Desconto</label>
               <input
                 type="number"
-                value={0}
+                value={desconto}
+                onChange={(e) => setDesconto(e.target.value)}
               />
             </div>
 
@@ -188,7 +215,7 @@ function Vendas() {
 
           <div className="total-venda">
             <label>Total:</label>
-            <span>{formatPrice(10)}</span>
+            <span>{formatPrice(total)}</span>
           </div>
 
           <button className="confirm-button" type="submit">
