@@ -84,11 +84,12 @@ class Cardapio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(70))
     preco = db.Column(db.Integer)
+    categoria = db.Column(db.String(45))
 
 
     @staticmethod
-    def get():
-        cardapio = Cardapio.query.all()
+    def get(categoria):
+        cardapio = Cardapio.query.filter_by(categoria=categoria).all()
         return cardapio
 
 class Sale(db.Model):

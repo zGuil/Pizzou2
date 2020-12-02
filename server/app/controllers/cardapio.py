@@ -1,8 +1,8 @@
 from models import Cardapio
 
 
-def get_cardapio():
-    cardapio = Cardapio.get()
+def get_cardapio(categoria):
+    cardapio = Cardapio.get(categoria)
     lista_cardapio = []
     for produto in cardapio:
         dic = dict(

@@ -8,7 +8,6 @@ bp = Blueprint("sale", __name__)
 @bp.route("/insert/venda", methods=["POST"])
 def insert_sale_route():
     request_body = request.get_json()
-    
     sale = Vendas()
     venda = sale.transaction(request_body)
     if venda == "OK":

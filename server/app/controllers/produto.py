@@ -21,13 +21,23 @@ def get_produtos():
     produtos = Produto.get()
     lista_produtos = []
     for produto in produtos:
-        dic = dict(
-            id=produto.id,
-            nome=produto.nome,
-            preco_atual=produto.preco_atual,
-            qtd=produto.qtd,
-            descricao=produto.descricao
+        if produto.descricao != "":
+            dic = dict(
+                id=produto.id,
+                nome=produto.nome,
+                preco_atual=produto.preco_atual,
+                qtd=produto.qtd,
+                descricao=produto.descricao
 
-        )
+            )
+        else:
+            dic = dict(
+                id=produto.id,
+                nome=produto.nome,
+                preco_atual=produto.preco_atual,
+                qtd=produto.qtd,
+                descricao="-"
+
+            )
         lista_produtos.append(dic)
     return lista_produtos
