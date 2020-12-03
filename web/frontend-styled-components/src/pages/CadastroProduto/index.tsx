@@ -61,7 +61,7 @@ function CadastroProdutos() {
 
                 <div className="input-block">
                     <label>Preço</label>
-                    <input type="number" required value={preco} onChange={(e) => setPreco(e.target.value) }/>
+                    <input type="number" required value={preco} min="1" onChange={(e) => setPreco(e.target.value) }/>
                 </div>
 
                 <div className="input-block">

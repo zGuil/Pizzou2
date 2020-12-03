@@ -27,7 +27,7 @@ function Vendas() {
   const [produtos, setProdutos] = useState<produtos[]>([]);
   const [cardapio, setCardapio] = useState<cardapio[]>([]);
   const [nomeProduto, setNomeProduto] = useState('');
-  const [qtd, setQtd] = useState('0');
+  const [qtd, setQtd] = useState("0");
   const [preco, setPreco] = useState("0");
   const [desconto, setDesconto] = useState("0");
   const [subtotal, setSubTotal] = useState(0);
@@ -43,6 +43,7 @@ function Vendas() {
   function addNewProduct() {
     if (!nomeProduto || !qtd || !preco) alert('Preencha os campos!');
     if (desconto > preco) alert('O desconto não pode ser maior que preço !');
+    if (Number(qtd) <= 0) alert('A quantidade do produto deve ser maior que 0!');
     else {
       const sub = Number(preco) * Number(qtd) - Number(desconto)
       setProdutos([...produtos, { nome: nomeProduto, qtd, preco, subtotal: sub, categoria}]);
@@ -154,6 +155,7 @@ function Vendas() {
               <input
                 type="number"
                 value={preco}
+                readOnly
                 onChange={(e) => setPreco(e.target.value)}
               />
             </div>
