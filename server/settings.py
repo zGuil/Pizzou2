@@ -19,7 +19,7 @@ class DevelopmentConfig(Config):
     TESTING = True
     DEBUG = True
     IP_HOST = 'localhost'
-    PORT_HOST = 5000
+    PORT_HOST = 8000
     URL_MAIN = 'http://%s/%s' % (IP_HOST, PORT_HOST)
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://admin:Pizzou1234@db-ope-pizzou.ct2bcpzzh2py.us-east-1.rds.amazonaws.com:3306/pizzou'
 
