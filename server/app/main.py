@@ -11,26 +11,26 @@ from .routes.cardapio import bp as bp_cardapio
 
 config = app_config[app_active]
 
-def create_app(config_name):
-    app = Flask('app')
+#def create_app(config_name):
+app = Flask('app')
 
-    db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 
-    CORS(app)
-    app.config.from_object(app_config[app_active])
-    app.config.from_pyfile('../settings.py')
-    app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+CORS(app)
+app.config.from_object(app_config[app_active])
+app.config.from_pyfile('../settings.py')
+app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    db = SQLAlchemy(app)
-    db.init_app(app)
+db = SQLAlchemy(app)
+db.init_app(app)
 
 
-    app.register_blueprint(bp_produtos)
-    app.register_blueprint(bp_sale)
-    app.register_blueprint(bp_health)
-    app.register_blueprint(bp_cardapio)
+app.register_blueprint(bp_produtos)
+app.register_blueprint(bp_sale)
+app.register_blueprint(bp_health)
+app.register_blueprint(bp_cardapio)
 
 
-    return app
+#    return app
